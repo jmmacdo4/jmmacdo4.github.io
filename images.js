@@ -1,12 +1,3 @@
-function drawLine() {
-    var c = document.getElementById("myCanvas");
-    const boardSize = c.getAttribute("height");
-    var ctx = c.getContext("2d");
-    ctx.moveTo(0,0);
-    ctx.lineTo(boardSize, boardSize);
-    ctx.stroke();
-}
-
 function drawGrid() {
     var c = document.getElementById("myCanvas");
     const boardSize = c.getAttribute("height");
@@ -20,4 +11,9 @@ function drawGrid() {
         ctx.lineTo( boardSize, i*boardSize/8 );
         ctx.stroke();
     }
+}
+
+function foo() {
+    let a = new Array();
+    alert(a[5]);
 }
