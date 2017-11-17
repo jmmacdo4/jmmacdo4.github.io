@@ -1,0 +1,27 @@
+table {
+    color: #000000;
+    width: 1400px;
+    height: 750px;
+    margin: 10px auto 10px auto;
+    -moz-box-shadow: 10px 10px 10px #777777;
+    -webkit-box-shadow: 10px 10px 10px 10px #777777;
+    box-shadow: 10px 10px 10px #777777;
+}
+
+h1 {
+    width: 500px;
+    margin: 10px auto 10px auto;
+}
+
+td {
+    padding: 7.5px;
+}
+
+a {
+    width: 400px;
+    margin: 10px auto 10px auto;
+}
+
+body {
+    background-color: #1db891;
+}
