@@ -2,73 +2,80 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>DND Character Creation Form</title>
+<title>DnD Character Creation Form</title>
+<link href="character.css" type="text/css" rel="stylesheet">
+<script src="character.js"></script>
 </head>
 <body>
     <h1>
-        DND Character Creation Form
+        DnD Character Creation Form
     </h1>
     <form>
-        Character Name: <input type = "text" id="name"><br>
+        Name: <input type = "text" id="name"><br>
         <br>
-        Character Class: <input type = "text" id="classType"><br>
+        Class: <input type = "text" id="class"><br>
+        <br>
+        Race: <input type = "text" id="race"><br>
+        <br>
         Rank your desired stats from most important (1) to least important (6)<br><br>
-        Strength: <select id="strength">
+        #1: <select id="one">
             <option value="null">Please Choose One...</option>
-            <option value=1>1 (Most Important)</option>>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6 (Least Important)</option>
+            <option value="Strength">Strength</option>>
+            <option value="Dexterity">Dexterity</option>
+            <option value="Constitution">Constitution</option>
+            <option value="Intelligence">Intelligence</option>
+            <option value="Wisdom">Wisdom</option>
+            <option value="Charisma">Charisma</option>
         </select> <br><br>
-        Dexterity: <select id="dex">
+        #2: <select id="two">
                 <option value="null">Please Choose One...</option>
-                <option value=1>1 (Most Important)</option>>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-                <option value=6>6 (Least Important)</option>
+                <option value="Strength">Strength</option>>
+                <option value="Dexterity">Dexterity</option>
+                <option value="Constitution">Constitution</option>
+                <option value="Intelligence">Intelligence</option>
+                <option value="Wisdom">Wisdom</option>
+                <option value="Charisma">Charisma</option>
         </select> <br><br>
-        Constitution: <select id="con">
+        #3: <select id="three">
                 <option value="null">Please Choose One...</option>
-                <option value=1>1 (Most Important)</option>>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-                <option value=6>6 (Least Important)</option>
+                <option value="Strength">Strength</option>>
+                <option value="Dexterity">Dexterity</option>
+                <option value="Constitution">Constitution</option>
+                <option value="Intelligence">Intelligence</option>
+                <option value="Wisdom">Wisdom</option>
+                <option value="Charisma">Charisma</option>
         </select> <br><br>
-        Intelligence: <select id="int">
+        #4: <select id="four">
                 <option value="null">Please Choose One...</option>
-                <option value=1>1 (Most Important)</option>>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-                <option value=6>6 (Least Important)</option>
+                <option value="Strength">Strength</option>>
+                <option value="Dexterity">Dexterity</option>
+                <option value="Constitution">Constitution</option>
+                <option value="Intelligence">Intelligence</option>
+                <option value="Wisdom">Wisdom</option>
+                <option value="Charisma">Charisma</option>
         </select> <br><br>
-        Wisdom: <select id="wis">
+        #5: <select id="five">
                 <option value="null">Please Choose One...</option>
-                <option value=1>1 (Most Important)</option>>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-                <option value=6>6 (Least Important)</option>
+                <option value="Strength">Strength</option>>
+                <option value="Dexterity">Dexterity</option>
+                <option value="Constitution">Constitution</option>
+                <option value="Intelligence">Intelligence</option>
+                <option value="Wisdom">Wisdom</option>
+                <option value="Charisma">Charisma</option>
         </select> <br><br>
-        Charisma: <select id="charisma">
+        #6: <select id="six">
                 <option value="null">Please Choose One...</option>
-                <option value=1>1 (Most Important)</option>>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-                <option value=6>6 (Least Important)</option>
+                <option value="Strength">Strength</option>>
+                <option value="Dexterity">Dexterity</option>
+                <option value="Constitution">Constitution</option>
+                <option value="Intelligence">Intelligence</option>
+                <option value="Wisdom">Wisdom</option>
+                <option value="Charisma">Charisma</option>
         </select> <br><br>
     </form>
+    <a id="printStats" href="#" onclick="printCharacter()">Make your character</a><br><br>
     <div id="statsOut">
         
     </div>
 </body>
+</html>
