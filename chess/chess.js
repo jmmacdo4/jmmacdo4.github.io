@@ -5,18 +5,20 @@ class Piece {
         this.row = row;
         this.row = col;
 
-        var rowMax = 8;
-        var colMax = 8;
-
         this.moves = new Array();
-        resetMoves();
+        for ( let i=0; i < 8; i++ ) {
+            this.moves[i] = new Array();
+            for ( let j = 0; j < 8; j++ ) {
+                this.moves[i][j] = 0;
+            }
+        }
     }
 
     resetMoves() {
-        for ( i=0; i < rowMax; i++ ) {
-            moves[i] = new Array();
-            for ( j = 0; j < colMax; j++ ) {
-                moves[i][j] = 0;
+        for ( let i=0; i < 8; i++ ) {
+            this.moves[i] = new Array();
+            for ( let j = 0; j < 8; j++ ) {
+                this.moves[i][j] = 0;
             }
         }
     }
@@ -32,7 +34,11 @@ class Piece {
     }
 
     getMoves() {
-        return moves;
+        return this.moves;
+    }
+
+    getType() {
+        return this.type;
     }
 }
 
@@ -84,8 +90,7 @@ class Rook extends Piece {
     }
 
     setMoves() {
-        resetMoves();
-
+        this.resetMoves();
     }
 }
 
@@ -95,8 +100,7 @@ class Bishop extends Piece {
     }
 
     setMoves() {
-        resetMoves();
-        
+        resetMoves();  
     }
 }
 
@@ -131,39 +135,64 @@ class Tile {
 
 class Board {
     constructor() {
-        console.log('hello1');
+        //console.log('inside Board constructor');
         this.board = new Array();
-        for ( i = 0; i < 8; i++ ) {
-            board[i] = new Array();
-            for ( j = 0; j < 8; j++ ) {
+        for ( let i = 0; i < 8; i++ ) {
+            this.board[i] = new Array();
+            for ( let j = 0; j < 8; j++ ) {
                 if ( i > 2 && i < 6 ) {
-                    board[i][j] = 0;
+                    this.board[i][j] = 0;
                 }
             }
         }
         let color = 'w';
-        for ( i = 0; i < 8; i+=7 ) {
-            board[i][0] = new Rook( color, i, 0 );
-            board[i][7] = new Rook( color, i, 7 );
-            board[i][1] = new Knight( color, i, 1 );
-            board[i][6] = new Knight( color, i, 6 );
-            board[i][2] = new Bishop( color, i, 2 );
-            board[i][5] = new Bishop( color, i, 5);
-            board[i][3] = new Queen( color, i, 3);
-            board[i][4] = new King( color, i, 4 );
-            color = 'b';
+        for ( let i = 0; i < 8; i+=7 ) {
+            this.board[i][0] = new Rook( color, i, 0 );
+            this.board[i][7] = new Rook( color, i, 7 );
+            this.board[i][1] = new Knight( color, i, 1 );
+            this.board[i][6] = new Knight( color, i, 6 );
+            this.board[i][2] = new Bishop( color, i, 2 );
+            this.board[i][5] = new Bishop( color, i, 5);
+            this.board[i][3] = new Queen( color, i, 3);
+            this.board[i][4] = new King( color, i, 4 );
+            this.color = 'b';
         }
         color = 'w';
-        for (  i = 1; i < 7; i+=5 ) {
-            for ( j = 0; j < 8; j++ ) {
-                board[i][j] = new Pawn( color, i, j );
+        for (  let i = 1; i < 7; i+=5 ) {
+            for ( let j = 0; j < 8; j++ ) {
+                this.board[i][j] = new Pawn( color, i, j );
             }
             color = 'b';
         }
     }
 
+    getTile( row, col ) {
+        return this.board[row][col];
+    }
+
+    /**
+     * Draws a board using the html canvas boject 
+     * @param {*} length 
+     */
     drawBoard() {
-        return 'abc';
+        let color = 'white';
+        for ( let i = 7; i >= 0; i-- ) {
+            for ( let j = 0; j < 8; j++ ) {
+                document.getElementById("board").innerHTML +=
+                 `<canvas id="r:${i} c:${j}" class="${color}" width="80" height="80" style="border:1px solid #000000;">`;
+                 if ( color === "black" ) {
+                     color = "white";
+                 } else {
+                     color = "black";
+                 }
+            }
+            document.getElementById("board").innerHTML += "</br>";
+            if ( color === "black" ) {
+                color = "white";
+            } else {
+                color = "black";
+            }
+        }
     }
 
     
@@ -173,7 +202,7 @@ function drawGrid() {
     var c = document.getElementById("myCanvas");
     const boardSize = c.getAttribute("height");
     var ctx = c.getContext("2d");
-    for ( i = 1; i <=8; i++ ) {
+    for ( let i = 1; i <=8; i++ ) {
         ctx.moveTo( i*boardSize/8, 0 );
         ctx.lineTo( i*boardSize/8, boardSize );
         ctx.stroke();
@@ -184,7 +213,7 @@ function drawGrid() {
     }
 }
 
-function drawBoard() {
+window.onload = function() {
     let board = new Board();
-    //console.log(board.drawBoard());
+    board.drawBoard();
 }
