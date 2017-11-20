@@ -45,6 +45,8 @@ class Piece {
 class King extends Piece {
     constructor( color, row, col ) {
         super( "King", color, row, col );
+        this.image = new Image();
+        this.image.src = `images/${color}king.png`;
     }
 
     setMoves() {
@@ -60,11 +62,17 @@ class King extends Piece {
         moves[row-1][col+1] = 1;
         moves[row+1][col-1] = 1;  
     }
+
+    getImage() {
+        return this.image;
+    }
 }
 
 class Queen extends Piece {
     constructor( color, row, col ) {
         super("Queen", color, row, col );
+        this.image = new Image();
+        this.image.src = `images/${color}queen.png`;
     }
 
     setMoves() {
@@ -82,47 +90,70 @@ class Queen extends Piece {
             moves[row-1][col-1] = 1;
         }
     }
+    getImage() {
+        return this.image;
+    }
 }
 
 class Rook extends Piece {
     constructor( color, row, col ) {
         super("Rook", color, row, col );
+        this.image = new Image();
+        this.image.src = `images/${color}rook.png`;
     }
 
     setMoves() {
         this.resetMoves();
+    }
+    getImage() {
+        return this.image;
     }
 }
 
 class Bishop extends Piece {
     constructor( color, row, col ) {
         super("Bishop", color, row, col );
+        this.image = new Image();
+        this.image.src = `images/${color}bishop.png`;
     }
 
     setMoves() {
         resetMoves();  
+    }
+    getImage() {
+        return this.image;
     }
 }
 
 class Knight extends Piece {
     constructor( color, row, col ) {
         super("Knight", color, row, col );
+        this.image = new Image();
+        this.image.src = `images/${color}knight.png`;
     }
 
     setMoves() {
         resetMoves();
         
+    }
+    getImage() {
+        return this.image;
     }
 }
 
 class Pawn extends Piece {
     constructor( color, row, col ) {
-        super("Rook", color, row, col );
+        super("Pawn", color, row, col );
+        this.image = new Image();
+        this.image.src = `images/${color}pawn.png`;
     }
 
     setMoves() {
         resetMoves();
         
+    }
+    getImage() {
+        return this.image;
     }
 }
 
@@ -140,9 +171,9 @@ class Board {
         for ( let i = 0; i < 8; i++ ) {
             this.board[i] = new Array();
             for ( let j = 0; j < 8; j++ ) {
-                if ( i > 2 && i < 6 ) {
+                //if ( i > 2 && i < 6 ) {
                     this.board[i][j] = 0;
-                }
+                //}
             }
         }
         let color = 'w';
@@ -155,7 +186,7 @@ class Board {
             this.board[i][5] = new Bishop( color, i, 5);
             this.board[i][3] = new Queen( color, i, 3);
             this.board[i][4] = new King( color, i, 4 );
-            this.color = 'b';
+            color = 'b';
         }
         color = 'w';
         for (  let i = 1; i < 7; i+=5 ) {
@@ -179,7 +210,14 @@ class Board {
         for ( let i = 7; i >= 0; i-- ) {
             for ( let j = 0; j < 8; j++ ) {
                 document.getElementById("board").innerHTML +=
-                 `<canvas id="r:${i} c:${j}" class="${color}" width="80" height="80" style="border:1px solid #000000;">`;
+                 `<canvas id="r${i}c${j}" class="${color}" width="80" height="80" style="border:1px solid #000000;">`;
+                //  if ( this.board[i][j] != 0 ) {
+                //     var c=document.getElementById(`r${i}c${j}`);
+                //     var ctx=c.getContext("2d");
+                //     var img= this.board[i][j].getImage();
+                //     //console.log(this.board[i][j]);
+                //     //ctx.drawImage(img, 0, 0);
+                //  }
                  if ( color === "black" ) {
                      color = "white";
                  } else {
@@ -216,4 +254,26 @@ function drawGrid() {
 window.onload = function() {
     let board = new Board();
     board.drawBoard();
+    let color = 'white';
+    for ( let i = 7; i >= 0; i-- ) {
+        for ( let j = 0; j < 8; j++ ) {
+             if ( board.getTile(i,j) != 0 ) {
+                var c=document.getElementById(`r${i}c${j}`);
+                var ctx=c.getContext("2d");
+                var img= board.getTile(i,j).getImage();
+                //console.log(this.board[i][j]);
+                ctx.drawImage(img, 10, 10);
+             }
+             if ( color === "black" ) {
+                 color = "white";
+             } else {
+                 color = "black";
+             }
+        }
+        if ( color === "black" ) {
+            color = "white";
+        } else {
+            color = "black";
+        }
+    }
 }
