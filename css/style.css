@@ -632,7 +632,7 @@ ol {
 }
 
 .portfolio-item:hover .port-pic:after {
-	opacity: 0.8;
+	opacity: 0;
 	height: 100%;
 	top: 0;
 }
