@@ -410,8 +410,8 @@ ol {
 }
 
 .hero-image {
-	padding-top: 70px;
 	float: right;
+	max-width: 65%;
 }
 
 .hero-info h2 {
